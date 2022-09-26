@@ -24,6 +24,20 @@ public class Balle {
         this.setDiametre(diametre);
     }
 
+//remplacer les lignes
+     //balle.setX(balle.getX() + balle.getVitesseHorizontal());
+    // balle.setY(balle.getY() + balle.getVitesseVertical());
+    public void deplacer(){
+        x += vitesseHorizontal;
+        y += vitesseVertical;
+    }
+
+    public void inverseVitesseVertical(){
+        vitesseVertical *= -1;
+    }
+    public void inverseVitesseHorizontal(){
+        vitesseHorizontal *= -1;
+    }
     public int getX() {
         return x;
     }
