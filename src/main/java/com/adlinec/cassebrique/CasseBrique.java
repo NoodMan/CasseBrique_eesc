@@ -2,8 +2,12 @@ package com.adlinec.cassebrique;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class CasseBrique extends Canvas {
+
+    protected int largeurEcran = 500;
+    protected int hauteurEcran = 600;
 
     public CasseBrique() throws InterruptedException {
         JFrame fenetre = new JFrame("Casse brique");
@@ -12,8 +16,8 @@ public class CasseBrique extends Canvas {
         JPanel panneau = (JPanel) fenetre.getContentPane();
 
 //On définie la hauteur / largeur de l'écran
-        panneau.setPreferredSize(new Dimension(500, 500));
-        setBounds(0, 0, 500, 500);
+        panneau.setPreferredSize(new Dimension(largeurEcran, hauteurEcran));
+        setBounds(0, 0, largeurEcran, hauteurEcran);
 
 //On ajoute cette classe (qui hérite de Canvas) comme composant du panneau principal
         panneau.add(this);
@@ -35,15 +39,32 @@ public class CasseBrique extends Canvas {
     public void demarrer() throws InterruptedException {
 
         long indexFrame = 0;
+
+// on crée une liste de balle
+        ArrayList<Balle>listBalles = new ArrayList<>();
+
 //grace à la class Balle
-        Balle balle = new Balle(
-                250,
-                250,
-                Color.CYAN,
-                4,
-                -6,
-                50
-        );
+// création d'une balle seule
+//        Balle balle = new Balle(
+//                250,
+//                250,
+//                4,
+//                -6,
+//                30,
+//                Color.cyan);
+
+// on crée une bouvcle pour crée 100 balles
+        for(int i = 0; i <100; i++) {
+
+            listBalles.add(new Balle(
+                    (int)(Math.random()*largeurEcran),
+                    (int)(Math.random()*hauteurEcran),
+                    new Color((float) Math.random(), (float) Math.random(),(float)  Math.random(),(float)Math.random()),
+                    (int)(Math.random()*10)-5,
+                    (int)(Math.random()*10)-5,
+                    (int)(Math.random()*45)+5
+            ));
+        }
 
         while (true) {
             indexFrame++;
@@ -51,32 +72,17 @@ public class CasseBrique extends Canvas {
             Graphics2D dessin = (Graphics2D) getBufferStrategy().getDrawGraphics();
 
 //pour delete dessin
-            dessin.setColor(Color.WHITE);
-            dessin.fillRect(0, 0, 500, 500);
+            dessin.setColor(Color.white);
+            dessin.fillRect(0, 0, largeurEcran, hauteurEcran);
 
 //on dessin la balle grace à la class balle
-            balle.deplacer();
-            dessin.setColor(balle.getCouleur());
-            dessin.fillOval(
-                    balle.getX(),
-                    balle.getY(),
-                    balle.getDiametre(),
-                    balle.getDiametre());
-            dessin.setColor(Color.WHITE);
-            dessin.fillOval(
-                    balle.getX() + balle.getDecalageReflet(),
-                    balle.getY() + balle.getDecalageReflet(),
-                    balle.getDiametreReflet(),
-                    balle.getDiametreReflet()
-            );
 
-            if(balle.getX() < 0 || balle.getX() > 500 - balle.getDiametre()) {
-                balle.inverseVitesseHorizontal();
-            }
 
-            if(balle.getY() < 0 || balle.getY() > 500 - balle.getDiametre()) {
-                balle.inverseVitesseVertical();
-            }
+           for(Balle balle :listBalles){
+               balle.deplacer();
+               balle.dessiner(dessin);
+               balle.testCollision(largeurEcran, hauteurEcran);
+           }
 
 //on dis que le dessin est fini
             dessin.dispose();

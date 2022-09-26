@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class Balle {
 
-// instance / création de la class Balle
+    // instance / création de la class Balle
     protected int x;
     protected int y;
     protected Color couleur;
@@ -19,25 +19,50 @@ public class Balle {
         this.x = x;
         this.y = y;
         this.couleur = couleur;
-        this.vitesseHorizontal = vitesseHorizontal;
-        this.vitesseVertical = vitesseVertical;
+        this.vitesseHorizontal = vitesseHorizontal == 0 ? 1 : vitesseHorizontal;
+        this.vitesseVertical = vitesseVertical == 0 ? 1 : vitesseVertical;
         this.setDiametre(diametre);
     }
 
-//remplacer les lignes
-     //balle.setX(balle.getX() + balle.getVitesseHorizontal());
-    // balle.setY(balle.getY() + balle.getVitesseVertical());
-    public void deplacer(){
+    public void deplacer() {
         x += vitesseHorizontal;
         y += vitesseVertical;
     }
 
-    public void inverseVitesseVertical(){
+    public void dessiner(Graphics2D dessin) {
+        dessin.setColor(couleur);
+        dessin.fillOval(x, y, diametre, diametre);
+        dessin.setColor(Color.WHITE);
+        dessin.fillOval(
+                x + decalageReflet,
+                y + decalageReflet,
+                diametreReflet,
+                diametreReflet
+        );
+    }
+
+    public void testCollision(int largeurEcran, int hauteurEcran) {
+
+        if (x < 0 || x > largeurEcran - diametre) {
+            inverseVitesseHorizontal();
+        }
+
+        if (y < 0 || y > hauteurEcran - diametre) {
+            inverseVitesseVertical();
+        }
+
+    }
+
+    ;
+
+    public void inverseVitesseVertical() {
         vitesseVertical *= -1;
     }
-    public void inverseVitesseHorizontal(){
+
+    public void inverseVitesseHorizontal() {
         vitesseHorizontal *= -1;
     }
+
     public int getX() {
         return x;
     }
@@ -84,8 +109,8 @@ public class Balle {
 
     public void setDiametre(int diametre) {
         this.diametre = diametre;
-        this.diametreReflet = (int)(diametre * 0.3f);
-        this.decalageReflet = (int)(diametre * 0.2f);
+        this.diametreReflet = (int) (diametre * 0.3f);
+        this.decalageReflet = (int) (diametre * 0.2f);
     }
 
     public int getDiametreReflet() {
