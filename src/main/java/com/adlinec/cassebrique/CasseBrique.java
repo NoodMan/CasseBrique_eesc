@@ -43,15 +43,16 @@ public class CasseBrique extends Canvas {
 // on crée une liste de balle
         ArrayList<Balle>listBalles = new ArrayList<>();
 
-//grace à la class Balle
-// création d'une balle seule
+ //grace à la class Balle
+ //creation d'une balle seule
 //        Balle balle = new Balle(
 //                250,
 //                250,
-//                4,
+//                Color.cyan,
 //                -6,
 //                30,
-//                Color.cyan);
+//                4
+//        );
 
 // on crée une bouvcle pour crée 100 balles
         for(int i = 0; i <100; i++) {
@@ -60,6 +61,7 @@ public class CasseBrique extends Canvas {
                     (int)(Math.random()*largeurEcran),
                     (int)(Math.random()*hauteurEcran),
                     new Color((float) Math.random(), (float) Math.random(),(float)  Math.random(),(float)Math.random()),
+// sans opacité --> new Color((float) Math.random(), (float) Math.random(),(float)  Math.random()),
                     (int)(Math.random()*10)-5,
                     (int)(Math.random()*10)-5,
                     (int)(Math.random()*45)+5
@@ -77,11 +79,12 @@ public class CasseBrique extends Canvas {
 
 //on dessin la balle grace à la class balle
 
-
            for(Balle balle :listBalles){
                balle.deplacer();
                balle.dessiner(dessin);
                balle.testCollision(largeurEcran, hauteurEcran);
+//pour faire des petits points
+               balle.dessinerPoints(dessin);
            }
 
 //on dis que le dessin est fini
