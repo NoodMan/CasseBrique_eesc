@@ -3,11 +3,9 @@ package com.adlinec.cassebrique;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class Balle {
+public class Balle extends Sprite {
 
     // instance / création de la class Balle
-    protected int x;
-    protected int y;
     protected Color couleur;
     protected int vitesseHorizontal;
     protected int vitesseVertical;
@@ -16,14 +14,13 @@ public class Balle {
     protected int decalageReflet;
 
 //pour la création des points
-    protected Balle[] listePoints = new Balle[10];
+    protected Point[] listePoints = new Point[10];
 
     protected long indexFrame = 0;
 
 
     public Balle(int x, int y, Color couleur, int vitesseHorizontal, int vitesseVertical, int diametre) {
-        this.x = x;
-        this.y = y;
+        super(x, y);
         this.couleur = couleur;
         this.vitesseHorizontal = vitesseHorizontal == 0 ? 1 : vitesseHorizontal;
         this.vitesseVertical = vitesseVertical == 0 ? 1 : vitesseVertical;
@@ -32,8 +29,7 @@ public class Balle {
 
 //pour la creation des points derriere la balle
     public Balle(int x, int y) {
-        this.x = x;
-        this.y = y;
+        super(x, y);
         this.couleur = Color.BLACK;
         this.setDiametre(5);
     }
@@ -43,6 +39,7 @@ public class Balle {
         y += vitesseVertical;
     }
 
+    @Override // pour faire une surcharge du parent
     public void dessiner(Graphics2D dessin) {
         dessin.setColor(couleur);
         dessin.fillOval(x, y, diametre, diametre);
@@ -67,6 +64,7 @@ public class Balle {
 //    }
 
 // pour dessiner les points autre version
+
 //    private int indexPoint = 0;
     public void dessinerPoints(Graphics2D dessin) {
         indexFrame++;
@@ -77,22 +75,23 @@ public class Balle {
 //                listePoints.remove(listePoints.get(0));
 //            }
 
-            int indexPoint = (int)(indexFrame / 10) % 10;
+// pour preciser le nombre de balle que l'on veux afficher
+            int indexPoint = (int)(indexFrame / 3) % 3;
 
             if (indexFrame <= 100) {
-                listePoints[indexPoint] = new Balle(x, y);
+                listePoints[indexPoint] = new Point(x, y);
             } else {
                 listePoints[indexPoint].setX(x);
                 listePoints[indexPoint].setY(y);
             }
-
+// remplacer par un calcul avec modulo %
 //            indexPoint++;
 //            if (indexPoint == 10) {
 //                indexPoint = 0;
 //            }
         }
 
-        for (Balle point : listePoints) {
+        for (Point point : listePoints) {
             if (point != null) {
                 point.dessiner(dessin);
             }

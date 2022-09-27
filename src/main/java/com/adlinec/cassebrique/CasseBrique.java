@@ -41,7 +41,7 @@ public class CasseBrique extends Canvas {
         long indexFrame = 0;
 
 // on crée une liste de balle
-        ArrayList<Balle>listBalles = new ArrayList<>();
+       ArrayList<Balle>listBalles = new ArrayList<>();
 
  //grace à la class Balle
  //creation d'une balle seule
@@ -54,8 +54,8 @@ public class CasseBrique extends Canvas {
 //                4
 //        );
 
-// on crée une bouvcle pour crée 100 balles
-        for(int i = 0; i <100; i++) {
+// on crée une bouvcle pour crée 10 balles
+        for(int i = 0; i <10; i++) {
 
             listBalles.add(new Balle(
                     (int)(Math.random()*largeurEcran),
@@ -92,11 +92,11 @@ public class CasseBrique extends Canvas {
 //pour afficher le dessin
             getBufferStrategy().show();
 
-//pour verifier si indexFrame tourne bien
-//            System.out.println(indexFrame);
-
 //pour raffraichir le jeu
             Thread.sleep(1000 / 60);
+
+//pour verifier si indexFrame tourne bien
+//            System.out.println(indexFrame);
         }
     }
 
