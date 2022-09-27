@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="41c66933-2031-4646-b00a-e7951f3785fc" name="Changes" comment="Test des balles terminer...😝">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/adlinec/cassebrique/Point.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/adlinec/cassebrique/Sprite.java" afterDir="false" />
+    <list default="true" id="41c66933-2031-4646-b00a-e7951f3785fc" name="Changes" comment="Création de l'héritage ☻">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/adlinec/cassebrique/Balle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/adlinec/cassebrique/Balle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/adlinec/cassebrique/CasseBrique.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/adlinec/cassebrique/CasseBrique.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +102,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664282911088</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Création de l'héritage ☻">
+      <created>1664286728440</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1664286728440</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -126,6 +129,7 @@
     <MESSAGE value="Mise en ordre du code" />
     <MESSAGE value="création boucles 100 balles..." />
     <MESSAGE value="Test des balles terminer..." />
-    <option name="LAST_COMMIT_MESSAGE" value="Test des balles terminer..." />
+    <MESSAGE value="Création de l'héritage ☻" />
+    <option name="LAST_COMMIT_MESSAGE" value="Création de l'héritage ☻" />
   </component>
 </project>
